@@ -1,0 +1,46 @@
+<!--section start-->
+    <section class="register-page section-b-space">
+        <div class="container">
+            <div class="row">
+                <div class="register-form">
+                    <h3>Create Account</h3>
+                    <div class="theme-card">
+                        <form #f="ngForm" ngNativeValidate class="theme-form">
+
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="email">First Name</label>
+                                    <input type="text" class="form-control" name="fname" placeholder="First Name"
+                                    required ngModel>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="review">Last Name</label>
+                                    <input type="txt" class="form-control" name="lname" placeholder="Last Name"
+                                    required ngModel>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" name="username" placeholder="Username" required ngModel>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="review">Password</label>
+                                    <input type="password" class="form-control" name="password"
+                                        placeholder="Enter your password" required ngModel>
+                                </div>
+
+                              </div>
+                                <a type="submit" (click)="add(f)" class="btn btn-solid" routerLink="/Login">create Account</a>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Section ends-->
+

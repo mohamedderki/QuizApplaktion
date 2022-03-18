@@ -1,0 +1,40 @@
+<section>
+  <span class="start" *ngIf="!IsAcktiv"><button (click)="myBool()">Start</button></span>
+  <span class="start" *ngIf="!IsAcktivtwo"><button (click)="myBool()" routerLink="/Choice/Prüfungsmoudos">Zum Prüfungsmoudos ?</button></span>
+
+  <div id="con">
+    <div class="frage" *ngFor=" let frage of fragen; let FragenIndex = index ;let l = last"
+      	  [ngClass]="{'active' : currentPage === FragenIndex}">
+           <p>{{frage.Frage}}?</p>
+
+          <div id="antdiv">
+            <div class="Antworten" id="lol"
+            *ngFor="let Antwort of frage.Antwort; let AntwortIndex = index">
+            <p *ngIf="Antwort.richtig === true">
+              {{Antwort.Antwort}}
+            </p>
+          </div>
+        </div>
+
+        <h1>{{currentPage+1}}</h1>
+
+    </div>
+  </div>
+
+  <div class="contol">
+  <ul class="pagination">
+    <li class="page-item">
+      <button (click)="currentPage = currentPage - 1"
+      [disabled]="currentPage+1<=1"
+      (click)="IsAcktivtwo = true" >Prev</button>
+    </li>
+
+    <li class="page-item">
+      <button id="next" (click)="currentPage = currentPage + 1"
+      [disabled]="currentPage+1>=fragen.length+1"
+      (click)="myBool()"(click)="currentPage+1===fragen.length+1?IsAcktivtwo = false:IsAcktivtwo = true;">Next</button>
+    </li>
+     <li><button routerLink="/Wahlmenu">Home</button></li>
+  </ul>
+</div>
+</section>

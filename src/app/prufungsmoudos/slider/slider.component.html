@@ -1,0 +1,90 @@
+<nav>
+  <span class="start" *ngIf="!IsAcktiv"><button (click)="myBool()">Start</button></span>
+  <div id="con" [ngStyle]="{'display': IsAcktivtwo === false ? 'none' : 'flex' }">
+
+    <div class="frage" *ngFor=" let frage of fragen; let FragenIndex = index ;let l = last"
+        [ngClass]="{'active' : currentPage === FragenIndex}">
+      	   <div *ngIf="IsAcktiv"><h1>{{timer.timeLeft}}</h1></div>
+           <p>{{frage.Frage}}?</p>
+
+          <div class="fill" *ngIf="this.IdN[0].wahl ==='f1'">
+            <form #f="ngForm">
+              <input id="input" name="anser" type="text" ngModel>
+              <button type="submit"(click)="validition(f,frage.Antwort[0],FragenIndex,0)">Prüfen</button>
+            </form>
+          </div>
+          <div id="antdiv" *ngIf="this.IdN[0].wahl ==='1'||this.IdN[0].wahl ==='2'">
+            <div class="Antworten" id="lol"
+            *ngFor="let Antwort of frage.Antwort; let AntwortIndex = index">
+            <p (click)="validition(frage,Antwort,FragenIndex,AntwortIndex)">
+              {{Antwort.Antwort}}
+            </p>
+          </div>
+        </div>
+
+        <h1>{{currentPage+1}}</h1>
+
+        <div class="alert"
+             *ngIf="((this.IdN[0].mal==='teil') && (this.alert === true))"
+             [ngStyle]="{'background-color': ricgtigOderFalsch ===true ? 'red' : '' }">
+
+          <button  (click)="alert = false">Bestätigen</button>
+          <p *ngIf="ricgtigOderFalsch===true">Falsche Antwort<br>
+            Empfehlung: Sie können zunächst im Lernmodus intensiv lernen <br>
+            Sie werden auf die Erste Frage zurückgeworfen ! Viel Spaß !
+        </div>
+<!-- //Alert End -->
+
+
+    </div>
+  </div>
+
+
+
+
+  	<!-- //Ergebnise Start -->
+  <div class="table" id="two"
+      [ngStyle]="{'opacity': IsAcktivtwo === true ? '0' : '1' }">
+
+    <table>
+      <tr>
+        <th>Die Frage Nummer</th>
+        <th>Die Richtige Antwort</th>
+        <th>Die Falsche Antwort</th>
+        <th>Deine Antwort</th>
+      </tr>
+
+      <tr *ngFor="let frage of fragen; let i = index">
+        <td>{{frage.FragenIndex}}</td>
+        <td> <span *ngFor="let Antwort of frage.Antwort; let l=last"><span
+          *ngIf="Antwort.richtig ===true">{{Antwort.Antwort}} <span *ngIf="!l">,</span></span></span></td>
+        <td><span *ngFor="let Antwort of frage.Antwort; let l=last"><span
+          *ngIf="Antwort.richtig ===false">{{Antwort.Antwort}} <span
+          *ngIf="!l">,</span></span></span></td>
+        <td><span *ngFor="let Antwort of frage.Antwort; let l=last"><span
+          *ngIf="Antwort.this === true">{{Antwort.Antwort}} <span *ngIf="!l">,</span></span></span></td>
+      </tr>
+    </table>
+
+    <h3>Anzahl der Richtige Antworten: {{this.richtig}}</h3>
+    <h3>Anzahl der Falsch Antworten: {{this.Falsh}}</h3>
+  </div>
+  <!-- //Ergebnise End -->
+
+
+
+  <div class="contol">
+  <ul class="pagination">
+
+
+    <li class="page-item">
+      <button id="next" (click)="currentPage = currentPage+1"
+      [disabled]="currentPage+1>=fragen.length+1" (click)="timer.resetTimer()"
+      (click)="myBool()" (click)="currentPage+1===fragen.length+1?IsAcktivtwo = false:'';">Next</button>
+    </li>
+    <li>
+      <button routerLink="/Wahlmenu" (click)="timer.resetTimer()">Home</button>
+    </li>
+  </ul>
+</div>
+</nav>

@@ -1,0 +1,44 @@
+<!--section start-->
+<section class="login-page section-b-space">
+  <div class="container">
+      <div class="row">
+
+          <div class="login-form">
+
+              <h3>Login</h3>
+
+
+              <div  class="theme-card">
+                  <form #f="ngForm" class="theme-form">
+                      <div class="form-group">
+                          <label class="lable" for="username">Username</label>
+                          <input type="text" class="form-control" name="username" placeholder="username" required ngModel>
+                      </div>
+                      <div class="form-group">
+                          <label class="lable"for="review">Password</label>
+                          <input type="password" class="form-control" name="password"
+                              placeholder="Enter your password" required ngModel>
+                      </div>
+                      <div class="alert" *ngIf="alert===true"><p>Falsche Username oder Password</p></div>
+
+                      <div><a class="btn" (click)="vergleichen(f)">Loagin</a></div>
+                  </form>
+              </div>
+          </div>
+
+          <div class="createaccount">
+
+              <h3>New Customer</h3>
+
+
+              <div class="theme-card authentication-right">
+                  <h6 class="title-font">Create An Account</h6>
+                  <p>Sign up for a free account at our store. Registration is quick and easy. It allows you to be
+                      able to order from our shop. To start shopping click register.</p>
+                      <a routerLink="/Rigester" class="btn">Create an Account</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!--Section ends-->
